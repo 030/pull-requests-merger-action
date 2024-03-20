@@ -12,7 +12,7 @@ runs:
     - name: display the gh cli version
       run: gh --version
       shell: bash
-    - uses: actions/checkout@v4.1.1
+    - uses: actions/checkout@v4.1.2
     - name: list all prs with label dependencies and go
       run: gh pr list --label dependencies --label go
       env:

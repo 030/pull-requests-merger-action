@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/dockerhub.yml b/.github/workflows/dockerhub.yml
+index c97cd1d4..83761678 100644
+--- a/.github/workflows/dockerhub.yml
++++ b/.github/workflows/dockerhub.yml
+@@ -22,7 +22,7 @@ jobs:
+         run: echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+       - name: Build and push
+         id: docker_build
+-        uses: docker/build-push-action@v5.1.0
++        uses: docker/build-push-action@v5.3.0
+         with:
+           push: true
+           tags: utrecht/n3dr:${{ steps.version.outputs.version }}

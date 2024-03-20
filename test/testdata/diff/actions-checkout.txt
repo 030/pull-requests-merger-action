@@ -1,0 +1,108 @@
+diff --git a/.github/workflows/dip.yml b/.github/workflows/dip.yml
+index 5603e31e..8dfa4c5a 100644
+--- a/.github/workflows/dip.yml
++++ b/.github/workflows/dip.yml
+@@ -8,7 +8,7 @@ jobs:
+     runs-on: ubuntu-latest
+     name: Check whether images are up-to-date
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+         with:
+           fetch-depth: 0
+           token: ${{ secrets.WORKFLOW_TOKEN }}
+diff --git a/.github/workflows/docker.yml b/.github/workflows/docker.yml
+index 382dc8b2..df1d7e12 100644
+--- a/.github/workflows/docker.yml
++++ b/.github/workflows/docker.yml
+@@ -5,7 +5,7 @@ jobs:
+   mcvs-docker-action:
+     runs-on: ubuntu-20.04
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+       - uses: schubergphilis/mcvs-docker-action@v0.3.2
+         with:
+           dockle-accept-key: libcrypto3,libssl3
+diff --git a/.github/workflows/go.yml b/.github/workflows/go.yml
+index efbd40a9..040ccdfe 100644
+--- a/.github/workflows/go.yml
++++ b/.github/workflows/go.yml
+@@ -17,7 +17,7 @@ jobs:
+           - os: windows-latest
+             shasum: sha512sum
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+       - name: Set up Go
+         uses: actions/setup-go@v5.0.0
+         with:
+diff --git a/.github/workflows/golang.yml b/.github/workflows/golang.yml
+index f17da7d5..d5c8d37d 100644
+--- a/.github/workflows/golang.yml
++++ b/.github/workflows/golang.yml
+@@ -10,7 +10,7 @@ jobs:
+   mcvs-golang-action:
+     runs-on: ubuntu-20.04
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+       - uses: schubergphilis/mcvs-golang-action@v0.4.1
+         with:
+           golang-unit-tests-exclusions: |-
+diff --git a/.github/workflows/integration.yml b/.github/workflows/integration.yml
+index 71303ba2..255edc4e 100644
+--- a/.github/workflows/integration.yml
++++ b/.github/workflows/integration.yml
+@@ -8,7 +8,7 @@ jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+       - uses: actions/setup-go@v5.0.0
+         with:
+           go-version-file: 'go.mod'
+diff --git a/.github/workflows/release.yml b/.github/workflows/release.yml
+index ec9ec49b..5b1d7b1b 100644
+--- a/.github/workflows/release.yml
++++ b/.github/workflows/release.yml
+@@ -15,7 +15,7 @@ jobs:
+           - os: windows-latest
+             shasum: sha512sum
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+         with:
+           ref: main
+       - name: Set up Go
+diff --git a/.github/workflows/snapcraft.yml b/.github/workflows/snapcraft.yml
+index edb20614..45cc61cd 100644
+--- a/.github/workflows/snapcraft.yml
++++ b/.github/workflows/snapcraft.yml
+@@ -11,7 +11,7 @@ jobs:
+     needs: [release]
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+         with:
+           ref: main
+       - uses: snapcore/action-build@v1.2.0
+diff --git a/.github/workflows/yamllint.yml b/.github/workflows/yamllint.yml
+index 79a727db..f5afd805 100644
+--- a/.github/workflows/yamllint.yml
++++ b/.github/workflows/yamllint.yml
+@@ -10,6 +10,6 @@ jobs:
+         YAMLLINT_CONFIG_FILE: /code/configs/.yamllint.yaml
+       options: --cpus 1
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@v4.1.2
+       - name: run yamllint
+         run: yamllint .
+checking the new versions...
+new_package_and_version: actions/checkout v4.1.2
+package_to_be_updated: actions/checkout
+new_version_package: v4.1.2
+true

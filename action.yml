@@ -12,19 +12,10 @@ runs:
     - name: display the gh cli version
       run: gh --version
       shell: bash
-    - uses: actions/checkout@v4.1.1
-    - name: list all prs with label dependencies and go
-      run: gh pr list --label dependencies --label go
-      env:
-        GH_TOKEN: ${{ github.token }}
-      shell: bash
-    - name: list certain release using gh cli
+    - uses: actions/checkout@v4.1.2
+    - name: list all prs with label dependencies
       run: |
-        curl --silent https://api.github.com/repos/actions/checkout/tags | jq -r ".[] | select(.name==\"v4.1.1\") | .commit.sha"
-      shell: bash
-    - name: list all prs with label dependencies and github_actions
-      run: |
-        pr_ids=$(gh pr list --label dependencies --label github_actions | awk '{print $1}')
+        pr_ids=$(gh pr list --label dependencies | awk '{print $1}')
         for pr_id in ${pr_ids}; do
           echo "checking diff for pr_id: ${pr_id}"
           output=$(gh pr diff ${pr_id})
@@ -32,6 +23,7 @@ runs:
             --gh-pr-diff "${output}" \
             --path-to-allow-json-file ${{ github.action_path }}/allow.json
 
+          gh pr review ${pr_id} --approve
           gh pr merge ${pr_id} --squash
         done
       env:

@@ -1,6 +1,7 @@
 {
   "packages": {
     "030/settings-action": {
+      "v0.7.0": "561ee0e17e559712e628d12cb8efe864f70f0c09",
       "v0.6.0": "b26d52e748bca2e00566e8501e23426b423a77fd"
     },
     "actions/checkout": {

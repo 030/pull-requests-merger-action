@@ -10,4 +10,4 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-22.04
     steps:
-      - uses: 030/pull-requests-merger-action@v0.1.0
+      - uses: 030/pull-requests-merger-action@v0.1.1

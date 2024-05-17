@@ -12,7 +12,7 @@ runs:
     - name: display the gh cli version
       run: gh --version
       shell: bash
-    - uses: actions/checkout@v4.1.2
+    - uses: actions/checkout@v4.1.6
     - name: list all prs with label dependencies
       run: |
         pr_ids=$(gh pr list --label dependencies | awk '{print $1}')

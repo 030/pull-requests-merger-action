@@ -3,7 +3,5 @@ version: 2
 updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
-    reviewers:
-      - '030'
     schedule:
       interval: 'daily'

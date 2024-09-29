@@ -1,24 +1,38 @@
 {
-  "packages": {
-    "030/settings-action": {
-      "v0.7.0": "561ee0e17e559712e628d12cb8efe864f70f0c09",
-      "v0.6.0": "b26d52e748bca2e00566e8501e23426b423a77fd"
-    },
-    "actions/checkout": {
-      "v4.1.2": "9bb56186c3b09b4f86b1c65136769dd318469633",
-      "v4.1.1": "b4ffde65f46336ab88eb53be808477a3936bae11"
-    },
-    "docker/build-push-action": {
-      "v5.3.0": "2cdde995de11925a030ce8070c3d77a52ffcf1c0"
-    },
-    "docker/login-action": {
-      "v3.1.0": "e92390c5fb421da1463c202d546fed0ec5c39f20"
-    },
-    "docker/setup-buildx-action": {
-      "v3.2.0": "2b51285047da1547ffb1b2203d8be4c0af6b1f20"
-    },
-    "svenstaro/upload-release-action": {
-      "2.9.0": "04733e069f2d7f7f0b4aebc4fbdbce8613b03ccd"
-    }
-  }
+  "docker": ["alpine"],
+  "github-actions": [
+    "030/gomod-go-version-updater-action",
+    "030/settings-action",
+    "actions/checkout",
+    "actions/setup-go",
+    "codecov/codecov-action",
+    "docker/build-push-action",
+    "docker/login-action",
+    "docker/setup-buildx-action",
+    "docker/setup-qemu-action",
+    "hadolint/hadolint-action",
+    "svenstaro/upload-release-action"
+  ],
+  "golang": [
+    "github.com/spf13/viper",
+    "go.uber.org/atomic",
+    "golang.org/x/text",
+    "github.com/go-logr/logr",
+    "github.com/pmezard/go-difflib",
+    "github.com/stretchr/testify",
+    "golang.org/x/mod",
+    "golang.org/x/net",
+    "github.com/pelletier/go-toml/v2",
+    "golang.org/x/sync",
+    "github.com/sourcegraph/conc",
+    "golang.org/x/mod",
+    "golang.org/x/oauth2",
+    "github.com/pmezard/go-difflib",
+    "golang.org/x/sys",
+    "github.com/sagikazarmark/slog-shim",
+    "github.com/spf13/afero",
+    "github.com/davecgh/go-spew",
+    "github.com/subosito/gotenv",
+    "golang.org/x/exp"
+  ]
 }

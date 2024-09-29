@@ -2,9 +2,9 @@
 name: pull-requests-merger-action
 description: pull-requests-merger-action
 inputs:
-  description:
+  token:
     description: |
-      pull-requests-merger-action.
+      A token is required to allow rebase of PRs.
     required: true
 runs:
   using: 'composite'
@@ -15,17 +15,49 @@ runs:
     - uses: actions/checkout@v4.2.0
     - name: list all prs with label dependencies
       run: |
+        rebase_next_pr=false
         pr_ids=$(gh pr list --label dependencies | awk '{print $1}')
         for pr_id in ${pr_ids}; do
           echo "checking diff for pr_id: ${pr_id}"
           output=$(gh pr diff ${pr_id})
+          echo "${output}"
           python3 ${{ github.action_path }}/main.py \
             --gh-pr-diff "${output}" \
             --path-to-allow-json-file ${{ github.action_path }}/allow.json
 
+          if $rebase_next_pr; then
+            gh pr comment ${pr_id} --body "@dependabot rebase"
+          fi
+
           gh pr review ${pr_id} --approve
-          gh pr merge ${pr_id} --squash
+          if ! gh pr merge ${pr_id} --squash; then
+            #gh pr update-branch ${pr_id} --rebase
+            gh pr close ${pr_id}
+            gh pr reopen ${pr_id}
+
+            #gh pr comment ${pr_id} --body "@dependabot recreate"
+
+            # pr_branch=$(gh pr view ${pr_id} --json headRefName --jq '.headRefName')
+            # echo "pr_branch: ${pr_branch}"
+
+            # git config user.name github-actions[bot]
+            # git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+            # git fetch -p -P
+
+            # git checkout main
+
+            # git checkout ${pr_branch}
+
+            # git rebase main
+
+            # git push origin ${pr_branch} --force-with-lease
+          fi
+
+          rebase_next_pr=true
         done
       env:
-        GH_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ github.token }}
       shell: bash
+      #GH_TOKEN: ${{ github.token }}
+      #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
